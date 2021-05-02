@@ -29,7 +29,7 @@ function parse_args()
                 usage "${command_script}"
             ;;
             -i|--index)
-                param_index="$2-index"
+                param_index="$2"
                 shift
             ;;
             -y|--year)
@@ -49,13 +49,13 @@ function parse_args()
     done
 }
 
-param_index="daily-index"
+param_index="daily"
 param_year=$(date +'%Y')
 param_quarter=$((($(date +%-m) - 1) / 3 + 1 ))
 
 parse_args "$@"
 
-curl -s "${edgar_base_url}/${param_index}/${param_year}/QTR${param_quarter}/" \
+curl -s "${edgar_archive_url}/edgar/${param_index}-index/${param_year}/QTR${param_quarter}/" \
     -H "User-Agent: ${user_agent}" | \
     sed -n 's:.*<a href=\"\(.*\)\"><img.*:\1:p' | \
     grep idx
