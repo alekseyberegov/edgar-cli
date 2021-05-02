@@ -11,6 +11,7 @@ Options:
 DOCUMENTATIONXX
 
 . "${ETIPME_WORKDIR}/functions/base.sh"
+. "${ETIPME_WORKDIR}/functions/cache.sh"
 
 command_script="$0"
 
@@ -64,15 +65,16 @@ param_index="daily"
 parse_args "$@"
 calc_index
 
-trap 'rm -f "${tempfile}"' EXIT
-tempfile=$(mktemp) || exit 1
-
 index_uri="${edgar_archive_url}/edgar/${param_index}-index/${param_year}/QTR${param_quarter}/${param_file}.idx"
+cache_file=$(get_cache_file "${etipme_cache_dir}" "${index_uri}")
 
-echo "${index_uri}"
+if [[ ! -f ${cache_file} ]]
+then
+    echo "Downloading ${index_uri} ..."
+    curl -s "${index_uri}" \
+        -H "User-Agent: ${user_agent}"  \
+        -H "Accept-Encoding: deflate, gzip;q=1.0, *;q=0.5" > ${cache_file}
+fi
 
-curl -s "${index_uri}" \
-    -H "User-Agent: ${user_agent}"  \
-    -H "Accept-Encoding: deflate, gzip;q=1.0, *;q=0.5" > ${tempfile}
-
-cat ${tempfile} | less
+cat ${cache_file} | less
+echo "${index_uri} ${cache_file}"
