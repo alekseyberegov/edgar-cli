@@ -4,9 +4,9 @@
 Usage:
   ${1} list option [option] ...
 Options:
-  --year     -y           the year
-  --quarter  -q           the quarter
-  --period   -p           the period: "daily-index" or "full-index"
+  --year     -y           the year in YYYY format
+  --quarter  -q           the quarter number: 1..4
+  --index    -i           the index type: "daily" or "full"
   --help     -h           help
 DOCUMENTATIONXX
 
@@ -28,8 +28,8 @@ function parse_args()
             -h|--help)
                 usage "${command_script}"
             ;;
-            -p|--period)
-                param_period="$2"
+            -i|--index)
+                param_index="$2-index"
                 shift
             ;;
             -y|--year)
@@ -49,13 +49,13 @@ function parse_args()
     done
 }
 
-param_period="daily-index"
+param_index="daily-index"
 param_year=$(date +'%Y')
 param_quarter=$((($(date +%-m) - 1) / 3 + 1 ))
 
 parse_args "$@"
 
-curl -s "${base_url}/${param_period}/${param_year}/QTR${param_quarter}/" \
+curl -s "${edgar_base_url}/${param_index}/${param_year}/QTR${param_quarter}/" \
     -H "User-Agent: ${user_agent}" | \
     sed -n 's:.*<a href=\"\(.*\)\"><img.*:\1:p' | \
     grep idx
