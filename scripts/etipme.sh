@@ -3,20 +3,27 @@
 set -e
 export ETIPME_WORKDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
+export client_name=${0##*/}
+export client_version=$(cat ${ETIPME_WORKDIR}/etipme.version)
+
 # Includes
 . "${ETIPME_WORKDIR}/functions/base.sh"
 . "${ETIPME_WORKDIR}/functions/logger.sh"
 
-function help() {
-  client_name=${0##*/}
-  printf -- "
-ETIPME client ($(cat ${ETIPME_WORKDIR}/etipme.version)) <https://github.com/alekseyberegov/edgar-cli>
-usage: $client_name <command> [parameters]
+: <<DOCUMENTATIONXX
+
+ETIPME client (${2}) <https://github.com/alekseyberegov/edgar-cli>
+usage: ${1} <command> [parameters]
 commands:
-  list      list EDGAR archive
+  list      list archive
+  index     view index file
   *         help
-"
-  exit 1
+
+DOCUMENTATIONXX
+
+function help() {
+    print_doc "$0" "${client_name}" "${client_version}"
+    exit 1
 }
 
 if [[ $# -eq 0 ]]

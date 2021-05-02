@@ -25,3 +25,11 @@ function str_join() {
 function abs_path() {
     echo "$(cd "$(dirname "$1")"; pwd)/$(basename "$1")"
 }
+
+function print_doc() {
+    sed -n -e '/DOCUMENTATIONXX$/,/^DOCUMENTATIONXX$/p' "$1" |
+    sed -e '/DOCUMENTATIONXX$/d' |
+    ( [ -z "$2" ] && cat || sed -e "s/\${1}/$2/" ) | 
+    ( [ -z "$3" ] && cat || sed -e "s/\${2}/$3/" ) | 
+    ( [ -z "$4" ] && cat || sed -e "s/\${3}/$4/" ) 
+}
