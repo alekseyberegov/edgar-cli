@@ -17,6 +17,7 @@ usage: ${1} <command> [parameters]
 commands:
   list      list archive
   index     view index file
+  cache     view catch content
   *         help
 
 DOCUMENTATIONXX

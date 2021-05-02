@@ -66,7 +66,8 @@ parse_args "$@"
 calc_index
 
 index_uri="${edgar_archive_url}/edgar/${param_index}-index/${param_year}/QTR${param_quarter}/${param_file}.idx"
-cache_file=$(get_cache_file "${etipme_cache_dir}" "${index_uri}")
+cache_key="${param_year}-Q${param_quarter}-${param_file}-${param_index}"
+cache_file=$(get_cache_file "${etipme_cache_dir}" "${cache_key}")
 
 if [[ ! -f ${cache_file} ]]
 then
