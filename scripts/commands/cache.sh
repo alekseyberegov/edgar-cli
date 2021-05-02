@@ -8,4 +8,4 @@ DOCUMENTATIONXX
 . "${ETIPME_WORKDIR}/functions/base.sh"
 . "${ETIPME_WORKDIR}/functions/cache.sh"
 
-ls -l ${etipme_cache_dir/#\~/$HOME}
+ls -l $(get_cache_dir)

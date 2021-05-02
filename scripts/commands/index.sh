@@ -67,7 +67,7 @@ calc_index
 
 index_uri="${edgar_archive_url}/edgar/${param_index}-index/${param_year}/QTR${param_quarter}/${param_file}.idx"
 cache_key="${param_year}-Q${param_quarter}-${param_file}-${param_index}"
-cache_file=$(get_cache_file "${etipme_cache_dir}" "${cache_key}")
+cache_file=$(get_cache_file "${cache_key}")
 
 if [[ ! -f ${cache_file} ]]
 then
@@ -78,4 +78,4 @@ then
 fi
 
 cat ${cache_file} | less
-echo "${index_uri} ${cache_file}"
+echo "${index_uri} -> ${cache_file}"

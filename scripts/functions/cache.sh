@@ -1,15 +1,15 @@
 #!/bin/bash
 
-#
-# Parameters:
-# -----------
-# $1 - cache base dir
-# $2 - cache key
-#
+function get_cache_dir()
+{
+    echo "${etipme_cache_dir/#\~/$HOME}"
+}
+
 function get_cache_file()
 {
-    cache_dir="${1/#\~/$HOME}"
+    cache_dir="$(get_cache_dir)"
     mkdir -p ${cache_dir}
 
-    echo "${cache_dir}/$2"
+    echo "${cache_dir}/$1"
 } 
+
