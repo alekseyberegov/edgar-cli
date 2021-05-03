@@ -15,9 +15,10 @@ export client_version=$(cat ${ETIPME_WORKDIR}/etipme.version)
 ETIPME client (${2}) <https://github.com/alekseyberegov/edgar-cli>
 usage: ${1} <command> [parameters]
 commands:
-  list      list archive
-  index     view index file
-  cache     view catch content
+  list      List index files
+  index     View index file
+  cache     View catch dir
+  pyenv     Create python venv
   *         help
 
 DOCUMENTATIONXX
