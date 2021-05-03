@@ -2,7 +2,7 @@
 
 : <<DOCUMENTATIONXX
 Usage:
-  ${1} list option [option] ...
+  ${1} list [options] ...
 Options:
   --year     -y           the year in YYYY format
   --quarter  -q           the quarter number: 1..4

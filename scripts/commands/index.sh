@@ -2,7 +2,7 @@
 
 : <<DOCUMENTATIONXX
 Usage:
-  ${1} list index [option] ...
+  ${1} index [options] ...
 Options:
   --date     -d           the index file date in YYYYMMDD format
   --index    -i           the index type: "daily" or "full"

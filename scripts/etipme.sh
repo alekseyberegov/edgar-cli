@@ -17,8 +17,9 @@ usage: ${1} <command> [parameters]
 commands:
   list      List index files
   index     View index file
-  cache     View catch dir
-  pyenv     Create python venv
+  cache     View cache directory
+  pyenv     Create python environment
+  module    Manage python modules
   *         help
 
 DOCUMENTATIONXX
