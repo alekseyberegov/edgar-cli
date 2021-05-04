@@ -1,6 +1,6 @@
 #!/bin/bash
 
-function create_venv()
+function venv_create()
 {
     venv_dir=${etipme_pyenv_dir/#\~/$HOME}
 
@@ -12,7 +12,7 @@ function create_venv()
     fi
 }
 
-function install_python_module()
+function venv_run()
 {
     venv_dir=${etipme_pyenv_dir/#\~/$HOME}
 
@@ -23,5 +23,7 @@ function install_python_module()
     fi
 
     source ${venv_dir}/bin/activate
-    pip3 install "$1"
+
+    command=$1; shift
+    $command "$@"
 }

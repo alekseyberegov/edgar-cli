@@ -18,10 +18,8 @@ commands:
   list      List index files
   index     View index file
   cache     View cache directory
-  pyenv     Create python environment
   module    Manage python modules
   *         help
-
 DOCUMENTATIONXX
 
 function help() {
