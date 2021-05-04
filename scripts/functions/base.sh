@@ -23,7 +23,8 @@ function str_join() {
 }
 
 function abs_path() {
-    echo "$(cd "$(dirname "$1")"; pwd)/$(basename "$1")"
+    dir=${1/#\~/$HOME}
+    echo "$(cd "$(dirname "$dir")"; pwd)/$(basename "$dir")"
 }
 
 function print_doc() {

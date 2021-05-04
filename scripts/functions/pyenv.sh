@@ -27,3 +27,32 @@ function venv_run()
     command=$1; shift
     $command "$@"
 }
+
+function venv_pip()
+{
+    if [[ -z "$2" ]]
+    then
+        printf -- "Error: missing the module name\n"
+        usage
+    fi
+
+    venv_run pip3 "$@"
+}
+
+function venv_exec()
+{
+    spec=$1; shift
+    declare -a params=($@)
+
+    IFS=';' read -ra args <<< "$spec"
+    for i in "${!args[@]}"
+    do
+        if [[ "${args[$i]}" != "*" && -z "${params[$i]}" ]]
+        then
+            printf -- "Error in \"%s\" (%s): missing parameter \"%s\"\n" "${params[*]}" "${args[*]}" "${args[$i]}"
+            usage
+        fi
+    done
+
+    venv_run "${params[@]}"
+}

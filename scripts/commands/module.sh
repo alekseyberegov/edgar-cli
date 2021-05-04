@@ -1,13 +1,17 @@
 #!/bin/bash
 
 : <<DOCUMENTATIONXX
+
 Usage:
-  ${1} module <command> [arguments] ...
+  ${1} module <command> [arguments]
+
 Commands:
-  install <module>      Install module from PyPI
-  list                  List installed python modules
-  init                  Initialize environment for modules
-  help                  Show help
+  install <module>           Install modules from PyPI
+  uninstall <module>         Uninstall modules
+  local <path>               Install local modules
+  list                       List installed modules
+  init                       Initialize environment for modules
+  help                       Show help
 DOCUMENTATIONXX
 
 . "${ETIPME_WORKDIR}/functions/base.sh"
@@ -30,12 +34,15 @@ case $1 in
         exit 0
         ;;
     install)
-        if [[ -z "$2" ]]
-        then
-            printf -- "Error: missing module name\n"
-            usage
-        fi
-        venv_run pip3 install "$2"
+        venv_exec "*;*;module" pip3 install "$2"
+        exit 0
+        ;;
+    uninstall)
+        venv_exec "*;*;module" pip3 uninstall "$2"
+        exit 0
+        ;;
+    local)
+        venv_exec "*;*;*;path" pip3 install -e "$2"
         exit 0
         ;;
     list)
