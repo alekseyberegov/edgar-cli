@@ -8,7 +8,7 @@ Commands:
   list      List index files
   index     View index file
   cache     View cache directory
-  module    Manage python modules
+  package   Manage python packages
   *         Show help
 DOCUMENTATIONXX
 

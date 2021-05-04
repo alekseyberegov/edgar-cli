@@ -3,14 +3,14 @@
 : <<DOCUMENTATIONXX
 
 Usage:
-  ${1} module <command> [arguments]
+  ${1} package <command> [arguments]
 
 Commands:
-  install <module>           Install modules from PyPI
-  uninstall <module>         Uninstall modules
-  local <path>               Install local modules
-  list                       List installed modules
-  init                       Initialize environment for modules
+  install <package>          Install packages from PyPI
+  uninstall <package>        Uninstall packages
+  local <path>               Install local packages
+  list                       List installed packages
+  init                       Initialize environment for packages
   help                       Show help
 DOCUMENTATIONXX
 
@@ -34,11 +34,11 @@ case $1 in
         exit 0
         ;;
     install)
-        venv_exec "*;*;module" pip3 install "$2"
+        venv_exec "*;*;package" pip3 install "$2"
         exit 0
         ;;
     uninstall)
-        venv_exec "*;*;module" pip3 uninstall "$2"
+        venv_exec "*;*;package" pip3 uninstall "$2"
         exit 0
         ;;
     local)
