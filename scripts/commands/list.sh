@@ -1,8 +1,10 @@
 #!/bin/bash
 
 : <<DOCUMENTATIONXX
+
 Usage:
   ${1} list [options] ...
+
 Options:
   --year     -y           the year in YYYY format
   --quarter  -q           the quarter number: 1..4
@@ -25,7 +27,7 @@ function parse_args()
     while [[ $# -gt 0 ]]
     do
         case $1 in
-            -h|--help)
+            -h|--help|help)
                 usage "${command_script}"
             ;;
             -i|--index)

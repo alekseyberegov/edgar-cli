@@ -25,6 +25,7 @@ function venv_run()
     source ${venv_dir}/bin/activate
 
     command=$1; shift
+    echo "$command ${@/#/arg=}"
     $command "$@"
 }
 
@@ -54,5 +55,5 @@ function venv_exec()
         fi
     done
 
-    venv_run "${params[@]}"
+    venv_run "$@"
 }

@@ -12,6 +12,10 @@ Commands:
   *         Show help
 DOCUMENTATIONXX
 
+green='\e[32m'
+blue='\e[34m'
+clear='\e[0m'
+
 function help() {
     print_doc "$0" "${client_name}" "${client_version}"
     exit 1
@@ -44,4 +48,4 @@ CONFIG_ENV=${ETIPME_WORKDIR}/config/edgar.env
 set -a; source ${CONFIG_ENV}; set +a 
 
 # Run the command
-"${command}" "$@"
+"${command}" "$@" 

@@ -9,6 +9,7 @@ Commands:
   install <package>          Install packages from PyPI
   uninstall <package>        Uninstall packages
   local <path>               Install local packages
+  status <package>           Check whether package exists
   list                       List installed packages
   init                       Initialize environment for packages
   help                       Show help
@@ -43,6 +44,10 @@ case $1 in
         ;;
     local)
         venv_exec "*;*;*;path" pip3 install -e "$2"
+        exit 0
+        ;;
+    status)
+        venv_exec "*;*;*" python3 -c "import sys, pkgutil; print(1 if pkgutil.find_loader(\"$2\") else 0);"
         exit 0
         ;;
     list)
