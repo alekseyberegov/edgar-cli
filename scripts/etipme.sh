@@ -5,10 +5,11 @@
 ETIPME client (${2}) <https://github.com/alekseyberegov/edgar-cli>
 Usage: ${1} <command> [parameters]
 Commands:
-  list      List index files
+  archive   List index files
   index     View index file
   cache     View cache directory
   package   Manage python packages
+  edgarsh   Run egdar commands
   *         Show help
 DOCUMENTATIONXX
 

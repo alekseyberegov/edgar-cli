@@ -3,7 +3,7 @@
 : <<DOCUMENTATIONXX
 
 Usage:
-  ${1} list [options] ...
+  ${1} archive [options] ...
 
 Options:
   --year     -y           the year in YYYY format
