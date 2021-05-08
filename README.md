@@ -1,13 +1,23 @@
 # CLI to manage EDGAR financial reporting
 
-## Using CLI
+## Getting HELP
 1. Show available commands
     ```
     $ ./etipme.sh --help
     ```
-2. Install python venv
+
+## First use
+1. Install python venv
    ```
-   $ ./etipme.sh pyenv
+   $ ./etipme.sh package init
+   ```
+2. Install local version of `edgar-utils` (dev mode only)
+   ```
+   $ ./etipme.sh package local <path to edgar-utils>
+   ```
+3. Initialize EDGAR shell
+   ```
+   $ ./etipme.sh shell
    ```
 
 ## Configuring CLI

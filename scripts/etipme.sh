@@ -9,6 +9,7 @@ Commands:
   index     View index file
   cache     View cache directory
   package   Manage python packages
+  shell     Initialize edgar shell
   edgarsh   Run egdar commands
   *         Show help
 DOCUMENTATIONXX
