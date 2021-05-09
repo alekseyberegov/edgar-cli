@@ -2,7 +2,7 @@ import os
 import sys
 import click
 
-CONTEXT_SETTINGS = dict(auto_envvar_prefix="ETIPME")
+CONTEXT_SETTINGS = dict(auto_envvar_prefix="etipme")
 
 class Environment:
     def __init__(self):
@@ -53,3 +53,4 @@ def cli(ctx, verbose, home):
     ctx.verbose = verbose
     if home is not None:
         ctx.home = home
+
