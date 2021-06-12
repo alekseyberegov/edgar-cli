@@ -14,7 +14,12 @@ def cli(ctx, path):
         dir.mkdir(exist_ok=True)
         path = str(dir)
 
-    update_metadata(repo, path)
+    update_metadata(repo, {
+        'root': path, 
+        'quarterly_file': 'master.idx',
+        'daily_file': 'master{y}{m:02}{d:02}.idx',
+        'object_path': "['{t}', '{y}', 'QTR{q}']"
+    })
     ctx.log(f"Initialized the repository in {click.format_filename(path)}")
   
 def init_repo():
@@ -22,8 +27,9 @@ def init_repo():
     repo.mkdir(exist_ok=True)
     return repo
 
-def update_metadata(repo: Path, root: str) -> None:
+def update_metadata(repo: Path, meta) -> None:
     config = configparser.ConfigParser()
-    config['DATA'] = {'root': root}
+    config['DATA'] = meta
     with open(repo / 'repo.ini', 'w') as file:
         config.write(file)
+
